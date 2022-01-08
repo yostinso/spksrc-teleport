@@ -1,0 +1,79 @@
+[
+    {
+        "step_title": "Node configuration",
+        "items": [
+            {
+                "type": "textfield",
+                "desc": "Please enter a name for this node",
+                "subitems": [
+                        {
+                                "key": "wizard_nodename",
+                                "desc": "Node name",
+                                "defaultValue": "synology",
+                                "validator": {
+                                        "allowBlank": false,
+                                        "regex": {
+                                                "expr": "/^[a-zA-Z0-9_-]+$/",
+                                                "errorText": "Letters/numbers/-_ only"
+                                        }
+                                }
+                        }
+                ]
+            },
+            {
+                "type": "textfield",
+                "desc": "Initial authentication token",
+                "subitems": [
+                        {
+                                "key": "wizard_authtoken",
+                                "desc": "Auth token",
+                                "defaultValue": "",
+                                "validator": {
+                                        "allowBlank": false,
+                                        "regex": {
+                                                "expr": "/^[a-f0-9]+$/",
+                                                "errorText": "Lowercase hex only"
+                                        }
+                                }
+                        }
+                ]
+            },
+            {
+                "type": "textfield",
+                "desc": "CA Pin for extra security",
+                "subitems": [
+                        {
+                                "key": "wizard_ca_pin",
+                                "desc": "CA pin",
+                                "defaultValue": "sha256:",
+                                "validator": {
+                                        "allowBlank": false,
+                                        "regex": {
+                                                "expr": "/^sha256:[a-f0-9]+$/",
+                                                "errorText": "Hash type and lowercase hex only"
+                                        }
+                                }
+                        }
+                ]
+            },
+            {
+                "type": "textfield",
+                "desc": "Cluster address / auth server IP and port",
+                "subitems": [
+                        {
+                                "key": "wizard_cluster_address",
+                                "desc": "CA pin",
+                                "defaultValue": "tele.example.com:443",
+                                "validator": {
+                                        "allowBlank": false,
+                                        "regex": {
+                                                "expr": "/^([a-z0-9]+\\.)*[a-z0-9]+:[0-9]+$/",
+                                                "errorText": "Hostname/IP and port"
+                                        }
+                                }
+                        }
+                ]
+            }
+        ]
+    }
+]
