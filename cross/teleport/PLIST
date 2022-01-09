@@ -1,0 +1,3 @@
+bin:bin/tctl
+bin:bin/teleport
+bin:bin/tsh
