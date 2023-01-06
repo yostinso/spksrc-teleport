@@ -62,7 +62,7 @@
                 "subitems": [
                         {
                                 "key": "wizard_cluster_address",
-                                "desc": "CA pin",
+                                "desc": "Address",
                                 "defaultValue": "tele.example.com:443",
                                 "validator": {
                                         "allowBlank": false,
