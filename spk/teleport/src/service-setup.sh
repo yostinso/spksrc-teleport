@@ -18,23 +18,27 @@ service_preinst ()
 	echo "noop"
 }
 
+
 service_postinst ()
 {
     if [ "${SYNOPKG_PKG_STATUS}" == "INSTALL" ]; then
         hostname=$(hostname)
         # Default configuration with shared folder
         {
-			echo "version: v2"
+			echo "version: v3"
             echo "teleport:"
             echo "  nodename: ${wizard_nodename:=$hostname}"
             echo "  data_dir: ${SYNOPKG_PKGVAR}"
             echo "  auth_token: ${wizard_authtoken}"
             echo "  ca_pin: ${wizard_ca_pin}"
-            echo "  auth_servers:"
-            echo "    - ${wizard_cluster_address}"
+            echo "  proxy_server: ${wizard_cluster_address}"
             echo ""
             echo "ssh_service:"
             echo "  enabled: yes"
+						echo "  commands:"
+						echo "  - name: hostname"
+						echo "    command: [hostname]"
+						echo "    period: 1m0s"
             echo "auth_service:"
             echo "  enabled: \"no\""
             echo "proxy_service:"
