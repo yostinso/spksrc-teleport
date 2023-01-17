@@ -1,11 +1,11 @@
 SPK_NAME = teleport
-SPK_VERS = 11.1.4
-SPK_REV = 2
+SPK_VERS = 11.2.1
+SPK_REV = 8
 
 MAINTAINER = yostinso
 DESCRIPTION  = Teleport provides simple secure access to SSH servers, Kubernetes clusters, PostgreSQL databases and web apps behind NAT, in any environment.
 DISPLAY_NAME = Teleport
-CHANGELOG = "11.1.4"
+CHANGELOG = "11.2.1"
 
 LICENSE = Apache-2.0
 
