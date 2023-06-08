@@ -1,5 +1,5 @@
 SPK_NAME = teleport
-SPK_VERS = 8.0.7
+SPK_VERS = 13.1.0
 SPK_REV = 1
 
 MAINTAINER = yostinso

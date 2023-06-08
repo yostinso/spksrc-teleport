@@ -1,5 +1,5 @@
 PKG_NAME = teleport
-PKG_VERS = 8.0.7
+PKG_VERS = 13.1.0
 PKG_EXT = tar.gz
 PKG_DIST_NAME = v$(PKG_VERS).$(PKG_EXT)
 PKG_DIST_FILE = $(PKG_NAME)-$(PKG_DIST_NAME)
@@ -23,15 +23,8 @@ CGO_ENABLED = 1
 
 
 COMPILE_TARGET = teleport_compile_target
-POST_EXTRACT_TARGET = teleport_post_extract
 
 include ../../mk/spksrc.cross-go.mk
 
 teleport_compile_target:
 	$(RUN) $(MAKE) all ARCH=$(GO_ARCH) GOARM=$(GOARM)
-
-teleport_post_extract:
-	@if [ ! -d $(GO_SRC_DIR)/webassets/teleport/ ]; then \
-		rmdir $(GO_SRC_DIR)/webassets; \
-		cd $(GO_SRC_DIR) && git init && git submodule add https://github.com/gravitational/webassets; \
-	fi;
