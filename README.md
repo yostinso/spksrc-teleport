@@ -1,3 +1,44 @@
+# Building teleport
+## Update Makefiles
+Update `SPK_VERS` in `cross/teleport/Makefile` and `spk/teleport/Makefile` to the version of Teleport you want to build.
+
+## Compile and build package
+```sh
+# Get spksrc build environment and run from this repo dir
+docker run -it -v $(pwd):/spksrc ghcr.io/synocommunity/spksrc /bin/bash
+
+# Add Node and Yarn for building the UI
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - && sudo apt-get install -y nodejs
+npm install --global yarn
+
+# Fix VCS stamping issue
+git config --global --add safe.directory /spksrc
+
+# Make sure go dependency is up to date
+make -C native/go clean
+
+# Clean and fetch digests
+rm local.mk
+make dsm-7.0
+make -C cross/teleport clean
+make -C cross/teleport digests
+
+# Build the .spk package (first one may not be necessary?)
+make -C cross/teleport arch-x64
+make -C spk/teleport arch-x64
+
+# You should now have a new .spk in
+./packages/teleport_x64-*spk
+```
+
+# Installing teleport
+Install the package, but then you'll need to run the following (only once after
+each install/upgrade) to enable it (SSHed into the synology machine)
+```
+sudo /var/packages/teleport/target/scripts/start
+```
+And then stop/start the Teleport service if it was running.
+
 # Discord
 SynoCommunity is now on Discord!
 
